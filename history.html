@@ -1,828 +1,972 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>法国历史大事记 · Livret du Citoyen</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bleu: #002395;
-    --blanc: #EDEDE9;
-    --rouge: #ED2939;
-    --gold: #C9A84C;
-    --dark: #0A0A0F;
-    --mid: #1C1C2E;
-    --text: #E8E4DC;
-    --muted: #9A9580;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法国历史大事记 · Livret du Citoyen</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bleu: #002395;
+            --blanc: #EDEDE9;
+            --rouge: #ED2939;
+            --gold: #C9A84C;
+            --dark: #0A0A0F;
+            --mid: #1C1C2E;
+            --text: #E8E4DC;
+            --muted: #9A9580;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    background-color: var(--dark);
-    color: var(--text);
-    font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
-    overflow-x: hidden;
-  }
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+        }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    background: 
-      radial-gradient(ellipse at 20% 50%, rgba(0,35,149,0.35) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(237,41,57,0.25) 0%, transparent 60%),
-      var(--dark);
-    padding: 2rem;
-    overflow: hidden;
-  }
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0, 35, 149, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(237, 41, 57, 0.25) 0%, transparent 60%),
+                var(--dark);
+            padding: 2rem;
+            overflow: hidden;
+        }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
-    pointer-events: none;
-  }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255, 255, 255, 0.015) 60px, rgba(255, 255, 255, 0.015) 61px),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, 0.015) 60px, rgba(255, 255, 255, 0.015) 61px);
+            pointer-events: none;
+        }
 
-  .tricolor-bar {
-    display: flex;
-    width: 80px;
-    height: 4px;
-    margin: 0 auto 2.5rem;
-    border-radius: 2px;
-    overflow: hidden;
-    gap: 2px;
-  }
-  .tricolor-bar span { flex: 1; }
-  .tricolor-bar span:nth-child(1) { background: var(--bleu); }
-  .tricolor-bar span:nth-child(2) { background: var(--blanc); }
-  .tricolor-bar span:nth-child(3) { background: var(--rouge); }
+        .tricolor-bar {
+            display: flex;
+            width: 80px;
+            height: 4px;
+            margin: 0 auto 2.5rem;
+            border-radius: 2px;
+            overflow: hidden;
+            gap: 2px;
+        }
 
-  .hero-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s ease forwards;
-  }
+        .tricolor-bar span {
+            flex: 1;
+        }
 
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--blanc);
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s ease forwards;
-  }
+        .tricolor-bar span:nth-child(1) {
+            background: var(--bleu);
+        }
 
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
+        .tricolor-bar span:nth-child(2) {
+            background: var(--blanc);
+        }
 
-  .hero-sub {
-    font-size: 1rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s ease forwards;
-  }
+        .tricolor-bar span:nth-child(3) {
+            background: var(--rouge);
+        }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: fadeUp 0.8s 1.2s ease forwards;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--muted);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.2s ease forwards;
+        }
 
-  .scroll-hint::after {
-    content: '';
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: pulse-line 2s ease-in-out infinite;
-  }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--blanc);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.4s ease forwards;
+        }
 
-  /* TIMELINE */
-  .timeline-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 5rem 2rem 8rem;
-    position: relative;
-  }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
 
-  /* Central vertical line */
-  .timeline-container::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, 
-      transparent 0%, 
-      rgba(201,168,76,0.4) 5%, 
-      rgba(201,168,76,0.4) 95%, 
-      transparent 100%);
-    transform: translateX(-50%);
-  }
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.6s ease forwards;
+        }
 
-  /* ERA SECTIONS */
-  .era {
-    margin-bottom: 1rem;
-  }
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeUp 0.8s 1.2s ease forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
 
-  .era-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: 4rem 0 2.5rem;
-  }
+        .scroll-hint::after {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: pulse-line 2s ease-in-out infinite;
+        }
 
-  .era-label {
-    background: var(--dark);
-    padding: 0.4rem 1.5rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 20px;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    position: relative;
-    z-index: 1;
-  }
+        /* TIMELINE */
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem 8rem;
+            position: relative;
+        }
 
-  /* EVENT CARDS */
-  .event {
-    display: grid;
-    grid-template-columns: 1fr 40px 1fr;
-    gap: 0;
-    margin-bottom: 2.5rem;
-    position: relative;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+        /* Central vertical line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom,
+                    transparent 0%,
+                    rgba(201, 168, 76, 0.4) 5%,
+                    rgba(201, 168, 76, 0.4) 95%,
+                    transparent 100%);
+            transform: translateX(-50%);
+        }
 
-  .event.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+        /* ERA SECTIONS */
+        .era {
+            margin-bottom: 1rem;
+        }
 
-  .event.left .event-content {
-    grid-column: 1;
-    text-align: right;
-    padding-right: 2rem;
-  }
-  .event.left .event-dot { grid-column: 2; }
-  .event.left .event-spacer { grid-column: 3; }
+        .era-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 4rem 0 2.5rem;
+        }
 
-  .event.right .event-spacer { grid-column: 1; }
-  .event.right .event-dot { grid-column: 2; }
-  .event.right .event-content {
-    grid-column: 3;
-    text-align: left;
-    padding-left: 2rem;
-  }
+        .era-label {
+            background: var(--dark);
+            padding: 0.4rem 1.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 20px;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+        }
 
-  .event-dot {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 0.5rem;
-    z-index: 1;
-  }
+        /* EVENT CARDS */
+        .event {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            gap: 0;
+            margin-bottom: 2.5rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
 
-  .dot-inner {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--dark);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
-    flex-shrink: 0;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-  }
+        .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-  .event:hover .dot-inner {
-    box-shadow: 0 0 0 6px rgba(201,168,76,0.15), 0 0 20px rgba(201,168,76,0.3);
-    transform: scale(1.3);
-  }
+        .event.left .event-content {
+            grid-column: 1;
+            text-align: right;
+            padding-right: 2rem;
+        }
 
-  .event-content {
-    display: flex;
-    flex-direction: column;
-  }
+        .event.left .event-dot {
+            grid-column: 2;
+        }
 
-  .event-year {
-    font-size: 1rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 0.35rem;
-    font-weight: 600;
-  }
+        .event.left .event-spacer {
+            grid-column: 3;
+        }
 
-  .event-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    padding: 1.1rem 1.3rem;
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    cursor: default;
-  }
+        .event.right .event-spacer {
+            grid-column: 1;
+        }
 
-  .event:hover .event-card {
-    background: rgba(201,168,76,0.05);
-    border-color: rgba(201,168,76,0.2);
-    transform: translateX(4px);
-  }
+        .event.right .event-dot {
+            grid-column: 2;
+        }
 
-  .event.left:hover .event-card {
-    transform: translateX(-4px);
-  }
+        .event.right .event-content {
+            grid-column: 3;
+            text-align: left;
+            padding-left: 2rem;
+        }
 
-  .event-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--blanc);
-    margin-bottom: 0.4rem;
-    line-height: 1.3;
-  }
+        .event-dot {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 0.5rem;
+            z-index: 1;
+        }
 
-  .event-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+        .dot-inner {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 2px solid var(--dark);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+            flex-shrink: 0;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
 
-  .event-tag {
-    display: inline-block;
-    margin-top: 0.6rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    font-weight: 600;
-  }
+        .event:hover .dot-inner {
+            box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.15), 0 0 20px rgba(201, 168, 76, 0.3);
+            transform: scale(1.3);
+        }
 
-  .tag-revolution { background: rgba(237,41,57,0.12); color: #FF6B7A; border: 1px solid rgba(237,41,57,0.25); }
-  .tag-republic { background: rgba(0,35,149,0.15); color: #7B9FFF; border: 1px solid rgba(0,35,149,0.3); }
-  .tag-war { background: rgba(120,60,0,0.2); color: #D4A055; border: 1px solid rgba(180,100,0,0.3); }
-  .tag-culture { background: rgba(100,0,140,0.15); color: #C070FF; border: 1px solid rgba(140,0,200,0.25); }
-  .tag-social { background: rgba(0,120,60,0.15); color: #60C090; border: 1px solid rgba(0,160,80,0.25); }
-  .tag-europe { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
-  .tag-religion { background: rgba(80,40,0,0.2); color: #E0A060; border: 1px solid rgba(150,80,0,0.25); }
+        .event-content {
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* FOOTER */
-  .timeline-footer {
-    text-align: center;
-    padding: 3rem 2rem 5rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
+        .event-year {
+            font-size: 1rem;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+        }
 
-  .footer-flag {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    opacity: 0.6;
-  }
+        .event-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 1.1rem 1.3rem;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            cursor: default;
+        }
 
-  .footer-text {
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
+        .event:hover .event-card {
+            background: rgba(201, 168, 76, 0.05);
+            border-color: rgba(201, 168, 76, 0.2);
+            transform: translateX(4px);
+        }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        .event.left:hover .event-card {
+            transform: translateX(-4px);
+        }
 
-  @keyframes pulse-line {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blanc);
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
 
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .timeline-container::before {
-      left: 20px;
-    }
+        .event-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
 
-    .event {
-      grid-template-columns: 40px 1fr;
-    }
+        .event-tag {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
 
-    .event.left .event-content,
-    .event.right .event-content {
-      grid-column: 2;
-      text-align: left;
-      padding-left: 1.2rem;
-      padding-right: 0;
-    }
+        .tag-revolution {
+            background: rgba(237, 41, 57, 0.12);
+            color: #FF6B7A;
+            border: 1px solid rgba(237, 41, 57, 0.25);
+        }
 
-    .event.left .event-dot,
-    .event.right .event-dot {
-      grid-column: 1;
-      grid-row: 1;
-    }
+        .tag-republic {
+            background: rgba(0, 35, 149, 0.15);
+            color: #7B9FFF;
+            border: 1px solid rgba(0, 35, 149, 0.3);
+        }
 
-    .event.left .event-spacer,
-    .event.right .event-spacer {
-      display: none;
-    }
+        .tag-war {
+            background: rgba(120, 60, 0, 0.2);
+            color: #D4A055;
+            border: 1px solid rgba(180, 100, 0, 0.3);
+        }
 
-    .event.left:hover .event-card {
-      transform: translateX(4px);
-    }
-  }
-</style>
+        .tag-culture {
+            background: rgba(100, 0, 140, 0.15);
+            color: #C070FF;
+            border: 1px solid rgba(140, 0, 200, 0.25);
+        }
+
+        .tag-social {
+            background: rgba(0, 120, 60, 0.15);
+            color: #60C090;
+            border: 1px solid rgba(0, 160, 80, 0.25);
+        }
+
+        .tag-europe {
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+        }
+
+        .tag-religion {
+            background: rgba(80, 40, 0, 0.2);
+            color: #E0A060;
+            border: 1px solid rgba(150, 80, 0, 0.25);
+        }
+
+        /* FOOTER */
+        .timeline-footer {
+            text-align: center;
+            padding: 3rem 2rem 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-flag {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-line {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .event {
+                grid-template-columns: 40px 1fr;
+            }
+
+            .event.left .event-content,
+            .event.right .event-content {
+                grid-column: 2;
+                text-align: left;
+                padding-left: 1.2rem;
+                padding-right: 0;
+            }
+
+            .event.left .event-dot,
+            .event.right .event-dot {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .event.left .event-spacer,
+            .event.right .event-spacer {
+                display: none;
+            }
+
+            .event.left:hover .event-card {
+                transform: translateX(4px);
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="tricolor-bar">
-    <span></span><span></span><span></span>
-  </div>
-  <p class="hero-label">Livret du Citoyen · 公民手册</p>
-  <h1>法国历史<br><em>大事年表</em></h1>
-  <p class="hero-sub">从史前时代到当代欧洲 · De la préhistoire à l'Europe contemporaine</p>
-  <div class="scroll-hint">向下滚动</div>
-</section>
-
-<!-- TIMELINE -->
-<main class="timeline-container">
-
-  <!-- 史前 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">史前时代 · Préhistoire</span></div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">约公元前18000—15000年</div>
-        <div class="event-card">
-          <div class="event-title">拉斯科洞窟壁画</div>
-          <div class="event-desc">法国最重要的史前洞穴之一，以其高质量的壁画而闻名，是人类最早的艺术表达之一。</div>
-          <span class="event-tag tag-culture">文化遗产</span>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="tricolor-bar">
+            <span></span><span></span><span></span>
         </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-  </div>
+        <p class="hero-label">Livret du Citoyen · 公民手册</p>
+        <h1>法国历史<br><em>大事年表</em></h1>
+        <p class="hero-sub">从史前时代到当代欧洲 · De la préhistoire à l'Europe contemporaine</p>
+        <div class="scroll-hint">向下滚动</div>
+    </section>
 
-  <!-- 古代 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">古代 · Antiquité</span></div>
+    <!-- TIMELINE -->
+    <main class="timeline-container">
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">约公元前50年</div>
-        <div class="event-card">
-          <div class="event-title">罗马人的到来</div>
-          <div class="event-desc">罗马人在法国领土定居，对当地社会产生了深远影响。本地居民逐渐采纳罗马的生活方式与拉丁文化。</div>
-          <span class="event-tag tag-culture">文化影响</span>
+        <!-- 史前 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">史前时代 · Préhistoire</span></div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">约公元前18000—15000年</div>
+                    <div class="event-card">
+                        <div class="event-title">拉斯科洞窟壁画 · Peintures rupestres de Lascaux</div>
+                        <div class="event-desc">法国最重要的史前洞穴之一，以其高质量的壁画而闻名，是人类最早的艺术表达之一。</div>
+                        <span class="event-tag tag-culture">文化遗产</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- 中世纪 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">中世纪 · Moyen Âge</span></div>
+        <!-- 古代 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">古代 · Antiquité</span></div>
 
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">5世纪（466—511年）</div>
-        <div class="event-card">
-          <div class="event-title">克洛维斯统一法兰克</div>
-          <div class="event-desc">克洛维斯统一了不同法兰克民族的王国，是构建法国领土统一的重要一步。他皈依基督教，奠定了法国的宗教基础。</div>
-          <span class="event-tag tag-republic">国家统一</span>
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">约公元前50年</div>
+                    <div class="event-card">
+                        <div class="event-title">罗马人的到来 · Arrivée des Romains</div>
+                        <div class="event-desc">罗马人在法国领土定居，对当地社会产生了深远影响。本地居民逐渐采纳罗马的生活方式与拉丁文化。</div>
+                        <span class="event-tag tag-culture">文化影响</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">15世纪（1412—1431年）</div>
-        <div class="event-card">
-          <div class="event-title">圣女贞德</div>
-          <div class="event-desc">在百年战争中，这位年轻的农村少女率领法国军队解放了部分领土。她是法国的民族英雄，象征着为国家服务的勇气。</div>
-          <span class="event-tag tag-war">战争·英雄</span>
+        <!-- 中世纪 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">中世纪 · Moyen Âge</span></div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">5世纪（466—511年）</div>
+                    <div class="event-card">
+                        <div class="event-title">克洛维斯统一法兰克 · Clovis unifie les Francs</div>
+                        <div class="event-desc">克洛维斯统一了不同法兰克民族的王国，是构建法国领土统一的重要一步。他皈依基督教，奠定了法国的宗教基础。</div>
+                        <span class="event-tag tag-republic">国家统一</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">15世纪（1412—1431年）</div>
+                    <div class="event-card">
+                        <div class="event-title">圣女贞德 · Jeanne d'Arc</div>
+                        <div class="event-desc">在百年战争中，这位年轻的农村少女率领法国军队解放了部分领土。她是法国的民族英雄，象征着为国家服务的勇气。</div>
+                        <span class="event-tag tag-war">战争·英雄</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">16世纪（1598年）</div>
+                    <div class="event-card">
+                        <div class="event-title">亨利四世与《南特敕令》 · Henri IV et l'Édit de Nantes</div>
+                        <div class="event-desc">亨利四世颁布《南特敕令》，授予新教徒宗教自由，恢复了宗教和平，是宗教宽容的重要里程碑。</div>
+                        <span class="event-tag tag-religion">宗教宽容</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">16世纪（1598年）</div>
-        <div class="event-card">
-          <div class="event-title">亨利四世与《南特敕令》</div>
-          <div class="event-desc">亨利四世颁布《南特敕令》，授予新教徒宗教自由，恢复了宗教和平，是宗教宽容的重要里程碑。</div>
-          <span class="event-tag tag-religion">宗教宽容</span>
+        <!-- 近代 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">近代 · Époque Moderne</span></div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">17世纪（1643—1715年）</div>
+                    <div class="event-card">
+                        <div class="event-title">路易十四的统治 · Règne de Louis XIV</div>
+                        <div class="event-desc">路易十四建立绝对君主制，将所有权力集中于国王。这一时期形成了强大而中央集权的国家体制，凡尔赛宫成为权力的象征。</div>
+                        <span class="event-tag tag-culture">君主专制</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">17世纪（1622—1673年）</div>
+                    <div class="event-card">
+                        <div class="event-title">莫里哀 · Molière</div>
+                        <div class="event-desc">法国最著名的戏剧作家，生活在路易十四时代，创作了《吝啬鬼》等著名喜剧，对法国文学影响深远。</div>
+                        <span class="event-tag tag-culture">文学艺术</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">18世纪</div>
+                    <div class="event-card">
+                        <div class="event-title">启蒙思想家 · Philosophes des Lumières</div>
+                        <div class="event-desc">卢梭、伏尔泰、狄德罗等哲学家通过著作为宽容与思想自由而战，为法国大革命奠定了思想基础。</div>
+                        <span class="event-tag tag-culture">思想启蒙</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-  </div>
 
-  <!-- 近代 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">近代 · Époque Moderne</span></div>
+        <!-- 大革命 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">法国大革命 · Révolution Française</span></div>
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">17世纪（1643—1715年）</div>
-        <div class="event-card">
-          <div class="event-title">路易十四的统治</div>
-          <div class="event-desc">路易十四建立绝对君主制，将所有权力集中于国王。这一时期形成了强大而中央集权的国家体制，凡尔赛宫成为权力的象征。</div>
-          <span class="event-tag tag-culture">君主专制</span>
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1789年7月14日</div>
+                    <div class="event-card">
+                        <div class="event-title">攻克巴士底狱 · Prise de la Bastille</div>
+                        <div class="event-desc">巴黎人民攻占王室监狱巴士底狱，标志着大革命的开始。这一天后来成为法国国庆日（7月14日）。同时期诞生了《马赛曲》国歌与三色旗。</div>
+                        <span class="event-tag tag-revolution">大革命</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1789年</div>
+                    <div class="event-card">
+                        <div class="event-title">《人权与公民权宣言》 · Déclaration des droits de l'homme et du citoyen</div>
+                        <div class="event-desc">确立了所有公民的自由与平等原则。这是共和国价值观的根本来源，至今仍是法国法律体系的基石。</div>
+                        <span class="event-tag tag-republic">共和价值</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1792年</div>
+                    <div class="event-card">
+                        <div class="event-title">第一共和国成立 · Proclamation de la Première République</div>
+                        <div class="event-desc">人民反抗绝对君主制，第一共和国宣告成立，开启了法国走向民主共和制度的历史进程。</div>
+                        <span class="event-tag tag-republic">共和国</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">17世纪（1622—1673年）</div>
-        <div class="event-card">
-          <div class="event-title">莫里哀</div>
-          <div class="event-desc">法国最著名的戏剧作家，生活在路易十四时代，创作了《吝啬鬼》等著名喜剧，对法国文学影响深远。</div>
-          <span class="event-tag tag-culture">文学艺术</span>
+        <!-- 帝国与19世纪 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">帝国与19世纪 · Empire & XIXe siècle</span></div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">19世纪（1769—1821年）</div>
+                    <div class="event-card">
+                        <div class="event-title">拿破仑一世 · Napoléon Ier</div>
+                        <div class="event-desc">执掌法国近15年，在欧洲发动多场战争。他制定了《民法典》（Code civil），奠定了现代法国法律制度的基础。</div>
+                        <span class="event-tag tag-war">帝国扩张</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1848年</div>
+                    <div class="event-card">
+                        <div class="event-title">废除奴隶制 · Abolition de l'esclavage</div>
+                        <div class="event-desc">法国废除了在殖民地实行的奴隶制度，这是争取人人平等的重要历史时刻。</div>
+                        <span class="event-tag tag-social">社会进步</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1875年</div>
+                    <div class="event-card">
+                        <div class="event-title">第三共和国诞生 · Naissance de la Troisième République</div>
+                        <div class="event-desc">共和政体正式稳定建立。Jules Ferry于1880年代推动公共教育改革，使小学教育成为免费、义务且世俗化的教育。</div>
+                        <span class="event-tag tag-republic">共和国</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">19世纪（1802—1885年）</div>
+                    <div class="event-card">
+                        <div class="event-title">维克多·雨果 · Victor Hugo</div>
+                        <div class="event-desc">法国最伟大的作家之一，积极反对社会不平等与死刑。代表作有《悲惨世界》与《巴黎圣母院》。</div>
+                        <span class="event-tag tag-culture">文学艺术</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1889年</div>
+                    <div class="event-card">
+                        <div class="event-title">埃菲尔铁塔建成 · Inauguration de la Tour Eiffel</div>
+                        <div class="event-desc">由工程师居斯塔夫·埃菲尔为1889年世界博览会而建，每年吸引逾700万游客，是法国最著名的标志性建筑。</div>
+                        <span class="event-tag tag-culture">文化遗产</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">18世纪</div>
-        <div class="event-card">
-          <div class="event-title">启蒙思想家</div>
-          <div class="event-desc">卢梭、伏尔泰、狄德罗等哲学家通过著作为宽容与思想自由而战，为法国大革命奠定了思想基础。</div>
-          <span class="event-tag tag-culture">思想启蒙</span>
+        <!-- 20世纪 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">20世纪 · XXe siècle</span></div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1905年</div>
+                    <div class="event-card">
+                        <div class="event-title">政教分离法 · Loi de séparation des Églises et de l'État</div>
+                        <div class="event-desc">确立了教会与国家彻底分离的原则（laïcité），是共和国世俗化的重要里程碑，至今仍是法国社会的核心价值之一。</div>
+                        <span class="event-tag tag-republic">世俗化</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1914—1918年</div>
+                    <div class="event-card">
+                        <div class="event-title">第一次世界大战 · Première Guerre mondiale</div>
+                        <div class="event-desc">席卷整个欧洲乃至美国的大规模战争，造成超过900万人死亡。11月11日为法定假日，纪念一战结束。</div>
+                        <span class="event-tag tag-war">世界大战</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1939—1945年</div>
+                    <div class="event-card">
+                        <div class="event-title">第二次世界大战 · Seconde Guerre mondiale</div>
+                        <div class="event-desc">
+                            纳粹德国入侵法国，维希政权与纳粹合作，参与了对犹太人的驱逐。1944年6月6日，盟军在诺曼底登陆，是解放法国的决定性时刻。5月8日为法定假日，纪念二战结束。</div>
+                        <span class="event-tag tag-war">世界大战</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1945年</div>
+                    <div class="event-card">
+                        <div class="event-title">社会保障体系建立 · Création de la sécurité sociale</div>
+                        <div class="event-desc">战后创建社会保障制度，由雇主、雇员及自营职业者缴纳的社会保险费和税款共同资助，体现了共和国"博爱"（fraternité）的价值观。</div>
+                        <span class="event-tag tag-social">社会保障</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1957年</div>
+                    <div class="event-card">
+                        <div class="event-title">《罗马条约》 · Traité de Rome</div>
+                        <div class="event-desc">法国与其他五个欧洲国家共同签署《罗马条约》，建立欧洲经济共同体，目标是在欧洲各国人民之间建立紧密联盟。欧洲一体化进程为欧洲带来了持久和平。
+                        </div>
+                        <span class="event-tag tag-europe">欧洲一体化</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1958年</div>
+                    <div class="event-card">
+                        <div class="event-title">第五共和国成立 · 戴高乐将军 · Naissance de la Ve République · Le général de Gaulle
+                        </div>
+                        <div class="event-desc">戴高乐将军领导法国抵抗德军占领并参与解放法国。1958年，他主导建立了法国现行政治体制——第五共和国，颁布了现行宪法。</div>
+                        <span class="event-tag tag-republic">第五共和国</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1950—1962年</div>
+                    <div class="event-card">
+                        <div class="event-title">法国非殖民化 · Décolonisation française</div>
+                        <div class="event-desc">欧洲殖民帝国中的各民族争取独立，法国的去殖民化进程从亚洲开始，延伸至非洲，经历了印度支那战争和阿尔及利亚战争等冲突。</div>
+                        <span class="event-tag tag-war">历史变革</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1968年5月</div>
+                    <div class="event-card">
+                        <div class="event-title">五月风暴 · Mai 1968</div>
+                        <div class="event-desc">由学生发起的社会运动，迅速蔓延至工人阶层，成为20世纪最重要的罢工与示威浪潮之一，深刻影响了法国社会。</div>
+                        <span class="event-tag tag-social">社会运动</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1974年</div>
+                    <div class="event-card">
+                        <div class="event-title">法定成年年龄降至18岁 · Majorité à 18 ans</div>
+                        <div class="event-desc">法国将法定成年年龄从21岁降至18岁，赋予年轻公民投票权及完整公民权利。</div>
+                        <span class="event-tag tag-social">社会进步</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1975年</div>
+                    <div class="event-card">
+                        <div class="event-title">韦伊法案（人工流产合法化） · Loi Veil (légalisation de l'avortement)</div>
+                        <div class="event-desc">由西蒙娜·韦伊主导推动的《自愿人工流产法》正式颁布，标志着女性对自身身体自主权的重要立法保障。</div>
+                        <span class="event-tag tag-social">女性权利</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">1981年</div>
+                    <div class="event-card">
+                        <div class="event-title">废除死刑 · Abolition de la peine de mort</div>
+                        <div class="event-desc">法国正式废除死刑，成为西方民主国家中推进人权保障的重要里程碑，体现了对生命尊严的根本尊重。</div>
+                        <span class="event-tag tag-social">人权进步</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- 大革命 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">法国大革命 · Révolution Française</span></div>
+        <!-- 当代欧洲 -->
+        <div class="era">
+            <div class="era-header"><span class="era-label">当代欧洲 · Europe Contemporaine</span></div>
 
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1789年7月14日</div>
-        <div class="event-card">
-          <div class="event-title">攻克巴士底狱</div>
-          <div class="event-desc">巴黎人民攻占王室监狱巴士底狱，标志着大革命的开始。这一天后来成为法国国庆日（7月14日）。同时期诞生了《马赛曲》国歌与三色旗。</div>
-          <span class="event-tag tag-revolution">大革命</span>
+            <div class="event right">
+                <div class="event-spacer"></div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-content">
+                    <div class="event-year">1992年</div>
+                    <div class="event-card">
+                        <div class="event-title">欧盟成立 · 法国公民成为欧洲公民 · Création de l'Union européenne · Les citoyens
+                            français deviennent citoyens européens</div>
+                        <div class="event-desc">欧洲联盟正式成立，将成员国更紧密地联系在一起。自此，法国公民同时也是欧洲公民，可在欧盟内自由流动、工作、学习和定居。</div>
+                        <span class="event-tag tag-europe">欧洲一体化</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event left">
+                <div class="event-content">
+                    <div class="event-year">2000年</div>
+                    <div class="event-card">
+                        <div class="event-title">欧元启用 · Adoption de l'euro</div>
+                        <div class="event-desc">自2000年起，法国与其他18个欧盟成员国共同采用欧元作为统一货币，进一步深化了欧洲经济一体化进程。</div>
+                        <span class="event-tag tag-europe">欧洲统一</span>
+                    </div>
+                </div>
+                <div class="event-dot">
+                    <div class="dot-inner"></div>
+                </div>
+                <div class="event-spacer"></div>
+            </div>
+
         </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1789年</div>
-        <div class="event-card">
-          <div class="event-title">《人权与公民权宣言》</div>
-          <div class="event-desc">确立了所有公民的自由与平等原则。这是共和国价值观的根本来源，至今仍是法国法律体系的基石。</div>
-          <span class="event-tag tag-republic">共和价值</span>
-        </div>
-      </div>
-    </div>
+    </main>
 
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1792年</div>
-        <div class="event-card">
-          <div class="event-title">第一共和国成立</div>
-          <div class="event-desc">人民反抗绝对君主制，第一共和国宣告成立，开启了法国走向民主共和制度的历史进程。</div>
-          <span class="event-tag tag-republic">共和国</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-  </div>
+    <!-- FOOTER -->
+    <footer class="timeline-footer">
+        <div class="footer-flag">🇫🇷</div>
+        <p class="footer-text">Liberté · Égalité · Fraternité</p>
+        <p class="footer-text" style="margin-top:0.5rem; font-size:0.6rem; opacity:0.5;">根据法国内政部《公民手册》(Livret du
+            Citoyen, Février 2022) 整理</p>
+    </footer>
 
-  <!-- 帝国与19世纪 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">帝国与19世纪 · Empire & XIXe siècle</span></div>
+    <script>
+        // Intersection Observer for scroll animations
+        const events = document.querySelectorAll('.event');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">19世纪（1769—1821年）</div>
-        <div class="event-card">
-          <div class="event-title">拿破仑一世</div>
-          <div class="event-desc">执掌法国近15年，在欧洲发动多场战争。他制定了《民法典》（Code civil），奠定了现代法国法律制度的基础。</div>
-          <span class="event-tag tag-war">帝国扩张</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1848年</div>
-        <div class="event-card">
-          <div class="event-title">废除奴隶制</div>
-          <div class="event-desc">法国废除了在殖民地实行的奴隶制度，这是争取人人平等的重要历史时刻。</div>
-          <span class="event-tag tag-social">社会进步</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1875年</div>
-        <div class="event-card">
-          <div class="event-title">第三共和国诞生</div>
-          <div class="event-desc">共和政体正式稳定建立。Jules Ferry于1880年代推动公共教育改革，使小学教育成为免费、义务且世俗化的教育。</div>
-          <span class="event-tag tag-republic">共和国</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">19世纪（1802—1885年）</div>
-        <div class="event-card">
-          <div class="event-title">维克多·雨果</div>
-          <div class="event-desc">法国最伟大的作家之一，积极反对社会不平等与死刑。代表作有《悲惨世界》与《巴黎圣母院》。</div>
-          <span class="event-tag tag-culture">文学艺术</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1889年</div>
-        <div class="event-card">
-          <div class="event-title">埃菲尔铁塔建成</div>
-          <div class="event-desc">由工程师居斯塔夫·埃菲尔为1889年世界博览会而建，每年吸引逾700万游客，是法国最著名的标志性建筑。</div>
-          <span class="event-tag tag-culture">文化遗产</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 20世纪 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">20世纪 · XXe siècle</span></div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1905年</div>
-        <div class="event-card">
-          <div class="event-title">政教分离法</div>
-          <div class="event-desc">确立了教会与国家彻底分离的原则（laïcité），是共和国世俗化的重要里程碑，至今仍是法国社会的核心价值之一。</div>
-          <span class="event-tag tag-republic">世俗化</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1914—1918年</div>
-        <div class="event-card">
-          <div class="event-title">第一次世界大战</div>
-          <div class="event-desc">席卷整个欧洲乃至美国的大规模战争，造成超过900万人死亡。11月11日为法定假日，纪念一战结束。</div>
-          <span class="event-tag tag-war">世界大战</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1939—1945年</div>
-        <div class="event-card">
-          <div class="event-title">第二次世界大战</div>
-          <div class="event-desc">纳粹德国入侵法国，维希政权与纳粹合作，参与了对犹太人的驱逐。1944年6月6日，盟军在诺曼底登陆，是解放法国的决定性时刻。5月8日为法定假日，纪念二战结束。</div>
-          <span class="event-tag tag-war">世界大战</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1945年</div>
-        <div class="event-card">
-          <div class="event-title">社会保障体系建立</div>
-          <div class="event-desc">战后创建社会保障制度，由雇主、雇员及自营职业者缴纳的社会保险费和税款共同资助，体现了共和国"博爱"（fraternité）的价值观。</div>
-          <span class="event-tag tag-social">社会保障</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1957年</div>
-        <div class="event-card">
-          <div class="event-title">《罗马条约》</div>
-          <div class="event-desc">法国与其他五个欧洲国家共同签署《罗马条约》，建立欧洲经济共同体，目标是在欧洲各国人民之间建立紧密联盟。欧洲一体化进程为欧洲带来了持久和平。</div>
-          <span class="event-tag tag-europe">欧洲一体化</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1958年</div>
-        <div class="event-card">
-          <div class="event-title">第五共和国成立 · 戴高乐将军</div>
-          <div class="event-desc">戴高乐将军领导法国抵抗德军占领并参与解放法国。1958年，他主导建立了法国现行政治体制——第五共和国，颁布了现行宪法。</div>
-          <span class="event-tag tag-republic">第五共和国</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1950—1962年</div>
-        <div class="event-card">
-          <div class="event-title">法国非殖民化</div>
-          <div class="event-desc">欧洲殖民帝国中的各民族争取独立，法国的去殖民化进程从亚洲开始，延伸至非洲，经历了印度支那战争和阿尔及利亚战争等冲突。</div>
-          <span class="event-tag tag-war">历史变革</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1968年5月</div>
-        <div class="event-card">
-          <div class="event-title">五月风暴</div>
-          <div class="event-desc">由学生发起的社会运动，迅速蔓延至工人阶层，成为20世纪最重要的罢工与示威浪潮之一，深刻影响了法国社会。</div>
-          <span class="event-tag tag-social">社会运动</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1974年</div>
-        <div class="event-card">
-          <div class="event-title">法定成年年龄降至18岁</div>
-          <div class="event-desc">法国将法定成年年龄从21岁降至18岁，赋予年轻公民投票权及完整公民权利。</div>
-          <span class="event-tag tag-social">社会进步</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1975年</div>
-        <div class="event-card">
-          <div class="event-title">韦伊法案（人工流产合法化）</div>
-          <div class="event-desc">由西蒙娜·韦伊主导推动的《自愿人工流产法》正式颁布，标志着女性对自身身体自主权的重要立法保障。</div>
-          <span class="event-tag tag-social">女性权利</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">1981年</div>
-        <div class="event-card">
-          <div class="event-title">废除死刑</div>
-          <div class="event-desc">法国正式废除死刑，成为西方民主国家中推进人权保障的重要里程碑，体现了对生命尊严的根本尊重。</div>
-          <span class="event-tag tag-social">人权进步</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-  </div>
-
-  <!-- 当代欧洲 -->
-  <div class="era">
-    <div class="era-header"><span class="era-label">当代欧洲 · Europe Contemporaine</span></div>
-
-    <div class="event right">
-      <div class="event-spacer"></div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-content">
-        <div class="event-year">1992年</div>
-        <div class="event-card">
-          <div class="event-title">欧盟成立 · 法国公民成为欧洲公民</div>
-          <div class="event-desc">欧洲联盟正式成立，将成员国更紧密地联系在一起。自此，法国公民同时也是欧洲公民，可在欧盟内自由流动、工作、学习和定居。</div>
-          <span class="event-tag tag-europe">欧洲一体化</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="event left">
-      <div class="event-content">
-        <div class="event-year">2000年</div>
-        <div class="event-card">
-          <div class="event-title">欧元启用</div>
-          <div class="event-desc">自2000年起，法国与其他18个欧盟成员国共同采用欧元作为统一货币，进一步深化了欧洲经济一体化进程。</div>
-          <span class="event-tag tag-europe">欧洲统一</span>
-        </div>
-      </div>
-      <div class="event-dot"><div class="dot-inner"></div></div>
-      <div class="event-spacer"></div>
-    </div>
-
-  </div>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="timeline-footer">
-  <div class="footer-flag">🇫🇷</div>
-  <p class="footer-text">Liberté · Égalité · Fraternité</p>
-  <p class="footer-text" style="margin-top:0.5rem; font-size:0.6rem; opacity:0.5;">根据法国内政部《公民手册》(Livret du Citoyen, Février 2022) 整理</p>
-</footer>
-
-<script>
-  // Intersection Observer for scroll animations
-  const events = document.querySelectorAll('.event');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  events.forEach(event => observer.observe(event));
-</script>
+        events.forEach(event => observer.observe(event));
+    </script>
 
 </body>
+
 </html>
