@@ -457,6 +457,13 @@
         <p class="hero-label">Livret du Citoyen · 公民手册</p>
         <h1>法国历史<br><em>大事年表</em></h1>
         <p class="hero-sub">从史前时代到当代欧洲 · De la préhistoire à l'Europe contemporaine</p>
+        <div style="margin-top:1rem; display:flex; gap:0.8rem; align-items:center; justify-content:center;">
+            <label for="langSelect" style="font-size:0.85rem; color:var(--muted);">语言 / Langue</label>
+            <select id="langSelect" aria-label="选择语言 / Choisir la langue" style="background:var(--dark); color:var(--text); border:1px solid rgba(255,255,255,0.06); padding:0.35rem 0.6rem; border-radius:6px;">
+                <option value="zh">中文</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
         <div class="scroll-hint">向下滚动</div>
     </section>
 
@@ -474,8 +481,282 @@
     </footer>
 
         <script>
-                // Data source (timeline events)
-                const timelineData = [
+            
+            // 管理在脚本中，切换语言时直接使用对应数据（默认中文）。
+            const timelineData = {
+                fr: [
+                    {
+                        "type": "event",
+                        "era": "Préhistoire",
+                        "orientation": "left",
+                        "year": "vers 18 000–15 000 av. J.-C.",
+                        "title": "Peintures rupestres de Lascaux",
+                        "description": "Une des grottes préhistoriques les plus importantes de France, célèbre pour la qualité de ses peintures pariétales — une des premières expressions artistiques humaines.",
+                        "tag": { "type": "culture", "label": "Patrimoine culturel" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Antiquité",
+                        "orientation": "right",
+                        "year": "vers 50 av. J.-C.",
+                        "title": "Arrivée des Romains",
+                        "description": "Les Romains s'installent sur le territoire qui deviendra la France, transformant les structures sociales et introduisant la culture latine.",
+                        "tag": { "type": "culture", "label": "Influence culturelle" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Moyen Âge",
+                        "orientation": "left",
+                        "year": "Ve siècle (466–511)",
+                        "title": "Clovis unifie les Francs",
+                        "description": "Clovis rassemble plusieurs royaumes francs et se convertit au christianisme, posant les bases religieuses et politiques de la France médiévale.",
+                        "tag": { "type": "republic", "label": "Unification nationale" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Moyen Âge",
+                        "orientation": "right",
+                        "year": "XVe siècle (1412–1431)",
+                        "title": "Jeanne d'Arc",
+                        "description": "Jeune paysanne devenue chef de guerre pendant la guerre de Cent Ans, symbole du patriotisme et de l'engagement au service de la nation.",
+                        "tag": { "type": "war", "label": "Guerre · Héros" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Moyen Âge",
+                        "orientation": "left",
+                        "year": "XVIe siècle (1598)",
+                        "title": "Henri IV et l'Édit de Nantes",
+                        "description": "Henri IV promulgue l'Édit de Nantes accordant des droits aux protestants, rétablissant ainsi la paix religieuse relative et la tolérance.",
+                        "tag": { "type": "religion", "label": "Tolérance religieuse" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Époque moderne",
+                        "orientation": "right",
+                        "year": "XVIIe siècle (1643–1715)",
+                        "title": "Règne de Louis XIV",
+                        "description": "Louis XIV instaure une monarchie absolue centralisée. Le palais de Versailles devient le symbole du pouvoir royal.",
+                        "tag": { "type": "culture", "label": "Monarchie absolue" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Époque moderne",
+                        "orientation": "left",
+                        "year": "XVIIe siècle (1622–1673)",
+                        "title": "Molière",
+                        "description": "L'un des dramaturges français les plus célèbres, auteur de comédies telles que Le Misanthrope, figure majeure de la littérature classique.",
+                        "tag": { "type": "culture", "label": "Littérature & arts" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Époque moderne",
+                        "orientation": "right",
+                        "year": "XVIIIe siècle",
+                        "title": "Philosophes des Lumières",
+                        "description": "Rousseau, Voltaire, Diderot et autres défendent la raison, la tolérance et la liberté, préparant intellectuellement la Révolution française.",
+                        "tag": { "type": "culture", "label": "Siècle des Lumières" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Révolution Française",
+                        "orientation": "left",
+                        "year": "14 juillet 1789",
+                        "title": "Prise de la Bastille",
+                        "description": "La prise de la Bastille par le peuple parisien marque le déclenchement de la Révolution ; cette date deviendra la fête nationale.",
+                        "tag": { "type": "revolution", "label": "Révolution" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Révolution Française",
+                        "orientation": "right",
+                        "year": "1789",
+                        "title": "Déclaration des droits de l'homme et du citoyen",
+                        "description": "Énonce les principes de liberté et d'égalité qui fondent la république et inspirent la législation française jusqu'à aujourd'hui.",
+                        "tag": { "type": "republic", "label": "Valeurs républicaines" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Révolution Française",
+                        "orientation": "left",
+                        "year": "1792",
+                        "title": "Proclamation de la Première République",
+                        "description": "Abolition de la monarchie et proclamation de la République, étape décisive vers un régime démocratique.",
+                        "tag": { "type": "republic", "label": "République" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "right",
+                        "year": "XIXe siècle (1769–1821)",
+                        "title": "Napoléon Ier",
+                        "description": "Empereur qui étend l'influence française en Europe, auteur du Code civil qui structure encore le droit moderne.",
+                        "tag": { "type": "war", "label": "Expansion impériale" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "left",
+                        "year": "1848",
+                        "title": "Abolition de l'esclavage",
+                        "description": "La France met fin à l'esclavage dans ses colonies, un progrès majeur vers l'égalité.",
+                        "tag": { "type": "social", "label": "Progrès social" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "left",
+                        "year": "1848",
+                        "title": "Instauration du suffrage universel masculin",
+                        "description": "La République de 1848 instaure le suffrage universel masculin, étendant massivement le droit de vote.",
+                        "tag": { "type": "republic", "label": "Valeurs républicaines" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "right",
+                        "year": "1875",
+                        "title": "Naissance de la Troisième République",
+                        "description": "La Troisième République consolide durablement le régime républicain ; Jules Ferry lancera la laïcisation et l'école publique.",
+                        "tag": { "type": "republic", "label": "République" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "left",
+                        "year": "XIXe siècle (1802–1885)",
+                        "title": "Victor Hugo",
+                        "description": "Écrivain majeur engagé contre les inégalités et la peine de mort, auteur de Notre-Dame de Paris et Les Misérables.",
+                        "tag": { "type": "culture", "label": "Littérature & arts" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Empire & XIXe siècle",
+                        "orientation": "right",
+                        "year": "1889",
+                        "title": "Inauguration de la Tour Eiffel",
+                        "description": "Construite pour l'Exposition universelle de 1889 par Gustave Eiffel, elle deviendra l'emblème de la France.",
+                        "tag": { "type": "culture", "label": "Patrimoine culturel" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1905",
+                        "title": "Loi de séparation des Églises et de l'État",
+                        "description": "Affirme la laïcité en séparant les institutions religieuses et l'État, pierre angulaire de la République laïque.",
+                        "tag": { "type": "republic", "label": "Laïcité" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "right",
+                        "year": "1914–1918",
+                        "title": "Première Guerre mondiale",
+                        "description": "Conflit mondial qui cause des pertes humaines immenses et redessine l'ordre européen.",
+                        "tag": { "type": "war", "label": "Guerres mondiales" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1939–1945",
+                        "title": "Seconde Guerre mondiale",
+                        "description": "Occupation nazie, collaboration du régime de Vichy, puis libération (dont le débarquement en Normandie en 1944).",
+                        "tag": { "type": "war", "label": "Guerres mondiales" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "right",
+                        "year": "1945",
+                        "title": "Création de la sécurité sociale",
+                        "description": "Mise en place d'un système de protection sociale après la guerre, fondé sur la solidarité nationale.",
+                        "tag": { "type": "social", "label": "Protection sociale" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1957",
+                        "title": "Traité de Rome",
+                        "description": "Signature du traité instituant la Communauté économique européenne, première étape importante vers l'intégration européenne.",
+                        "tag": { "type": "europe", "label": "Intégration européenne" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "right",
+                        "year": "1958",
+                        "title": "Naissance de la Ve République · Le général de Gaulle",
+                        "description": "Sous l'impulsion du général de Gaulle, la Ve République est créée en 1958 avec une nouvelle constitution renforçant le pouvoir exécutif.",
+                        "tag": { "type": "republic", "label": "Ve République" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1950–1962",
+                        "title": "Décolonisation française",
+                        "description": "Processus par lequel les colonies d'Asie et d'Afrique accèdent à l'indépendance, marqué par des conflits comme en Indochine et en Algérie.",
+                        "tag": { "type": "war", "label": "Transformations historiques" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "right",
+                        "year": "mai 1968",
+                        "title": "Mai 1968",
+                        "description": "Mouvement social initié par les étudiants et rejoint par les travailleurs, transformant profondément la société française.",
+                        "tag": { "type": "social", "label": "Mouvements sociaux" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1974",
+                        "title": "Majorité à 18 ans",
+                        "description": "Abaissement de la majorité civile à 18 ans, donnant aux jeunes l'accès plein et entier aux droits civiques.",
+                        "tag": { "type": "social", "label": "Progrès social" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "right",
+                        "year": "1975",
+                        "title": "Loi Veil (légalisation de l'avortement)",
+                        "description": "La loi portée par Simone Veil légalise l'avortement en France, un moment déterminant pour les droits des femmes.",
+                        "tag": { "type": "social", "label": "Droits des femmes" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "XXe siècle",
+                        "orientation": "left",
+                        "year": "1981",
+                        "title": "Abolition de la peine de mort",
+                        "description": "La France abolit la peine capitale, affirmant un engagement fort en faveur des droits de l'homme.",
+                        "tag": { "type": "social", "label": "Progrès des droits humains" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Europe contemporaine",
+                        "orientation": "right",
+                        "year": "1992",
+                        "title": "Création de l'Union européenne · Les citoyens français deviennent citoyens européens",
+                        "description": "La construction européenne se renforce et les citoyens obtiennent des droits nouveaux à l'échelle communautaire.",
+                        "tag": { "type": "europe", "label": "Intégration européenne" }
+                    },
+                    {
+                        "type": "event",
+                        "era": "Europe contemporaine",
+                        "orientation": "left",
+                        "year": "2000",
+                        "title": "Adoption de l'euro",
+                        "description": "Entrée en vigueur de l'euro comme monnaie unique pour plusieurs pays européens, approfondissant l'union économique.",
+                        "tag": { "type": "europe", "label": "Unification européenne" }
+                    }
+                ],
+                zh: [
                     {
                         "type": "event",
                         "era": "史前时代 · Préhistoire",
@@ -746,117 +1027,131 @@
                         "description": "自2000年起，法国与其他18个欧盟成员国共同采用欧元作为统一货币，进一步深化了欧洲经济一体化进程。",
                         "tag": { "type": "europe", "label": "欧洲统一" }
                     }
-                ];
+                ]
+            }
+            // tag -> CSS mapping
+            const tagClassMap = {
+                revolution: 'tag-revolution',
+                republic: 'tag-republic',
+                war: 'tag-war',
+                culture: 'tag-culture',
+                social: 'tag-social',
+                europe: 'tag-europe',
+                religion: 'tag-religion'
+            };
 
-                // map tag type to CSS class
-                const tagClassMap = {
-                    revolution: 'tag-revolution',
-                    republic: 'tag-republic',
-                    war: 'tag-war',
-                    culture: 'tag-culture',
-                    social: 'tag-social',
-                    europe: 'tag-europe',
-                    religion: 'tag-religion'
-                };
+            function createEventEl(item) {
+                const evt = document.createElement('div');
+                const orientation = item.orientation === 'right' ? 'right' : 'left';
+                evt.className = 'event ' + orientation;
 
-                function createEventEl(item) {
-                    const evt = document.createElement('div');
-                    const orientation = item.orientation === 'right' ? 'right' : 'left';
-                    evt.className = 'event ' + orientation;
+                const content = document.createElement('div');
+                content.className = 'event-content';
 
-                    const content = document.createElement('div');
-                    content.className = 'event-content';
+                const year = document.createElement('div');
+                year.className = 'event-year';
+                year.textContent = item.year || '';
 
-                    const year = document.createElement('div');
-                    year.className = 'event-year';
-                    year.textContent = item.year || '';
+                const card = document.createElement('div');
+                card.className = 'event-card';
 
-                    const card = document.createElement('div');
-                    card.className = 'event-card';
+                const title = document.createElement('div');
+                title.className = 'event-title';
+                title.textContent = item.title || '';
 
-                    const title = document.createElement('div');
-                    title.className = 'event-title';
-                    title.textContent = item.title || '';
+                const desc = document.createElement('div');
+                desc.className = 'event-desc';
+                desc.textContent = item.description || '';
 
-                    const desc = document.createElement('div');
-                    desc.className = 'event-desc';
-                    desc.textContent = item.description || '';
+                const tag = document.createElement('span');
+                const tagType = item.tag && item.tag.type ? item.tag.type : '';
+                tag.className = 'event-tag ' + (tagClassMap[tagType] || 'tag-culture');
+                tag.textContent = (item.tag && item.tag.label) ? item.tag.label : '';
 
-                    const tag = document.createElement('span');
-                    const tagType = item.tag && item.tag.type ? item.tag.type : '';
-                    tag.className = 'event-tag ' + (tagClassMap[tagType] || 'tag-culture');
-                    tag.textContent = (item.tag && item.tag.label) ? item.tag.label : '';
+                card.appendChild(title);
+                card.appendChild(desc);
+                if (tag.textContent) card.appendChild(tag);
 
-                    card.appendChild(title);
-                    card.appendChild(desc);
-                    if (tag.textContent) card.appendChild(tag);
+                content.appendChild(year);
+                content.appendChild(card);
 
-                    content.appendChild(year);
-                    content.appendChild(card);
+                const dotWrap = document.createElement('div');
+                dotWrap.className = 'event-dot';
+                const dotInner = document.createElement('div');
+                dotInner.className = 'dot-inner';
+                dotWrap.appendChild(dotInner);
 
-                    const dotWrap = document.createElement('div');
-                    dotWrap.className = 'event-dot';
-                    const dotInner = document.createElement('div');
-                    dotInner.className = 'dot-inner';
-                    dotWrap.appendChild(dotInner);
+                const spacer = document.createElement('div');
+                spacer.className = 'event-spacer';
 
-                    const spacer = document.createElement('div');
-                    spacer.className = 'event-spacer';
-
-                    if (orientation === 'left') {
-                        evt.appendChild(content);
-                        evt.appendChild(dotWrap);
-                        evt.appendChild(spacer);
-                    } else {
-                        evt.appendChild(spacer);
-                        evt.appendChild(dotWrap);
-                        evt.appendChild(content);
-                    }
-
-                    return evt;
+                if (orientation === 'left') {
+                    evt.appendChild(content);
+                    evt.appendChild(dotWrap);
+                    evt.appendChild(spacer);
+                } else {
+                    evt.appendChild(spacer);
+                    evt.appendChild(dotWrap);
+                    evt.appendChild(content);
                 }
 
-                (function renderTimeline() {
-                    const container = document.getElementById('timeline');
-                    const eraMap = new Map();
-                    const order = [];
+                return evt;
+            }
 
-                    timelineData.forEach(item => {
-                        if (!eraMap.has(item.era)) { eraMap.set(item.era, []); order.push(item.era); }
-                        eraMap.get(item.era).push(item);
+            // render/replace timeline content for a dataset
+            function mountTimeline(data) {
+                const container = document.getElementById('timeline');
+                container.innerHTML = '';
+
+                const eraMap = new Map();
+                const order = [];
+                data.forEach(item => {
+                    if (!eraMap.has(item.era)) { eraMap.set(item.era, []); order.push(item.era); }
+                    eraMap.get(item.era).push(item);
+                });
+
+                order.forEach(eraName => {
+                    const eraDiv = document.createElement('div');
+                    eraDiv.className = 'era';
+
+                    const header = document.createElement('div');
+                    header.className = 'era-header';
+                    const label = document.createElement('span');
+                    label.className = 'era-label';
+                    label.textContent = eraName;
+                    header.appendChild(label);
+
+                    eraDiv.appendChild(header);
+
+                    eraMap.get(eraName).forEach(ev => {
+                        const evEl = createEventEl(ev);
+                        eraDiv.appendChild(evEl);
                     });
 
-                    order.forEach(eraName => {
-                        const eraDiv = document.createElement('div');
-                        eraDiv.className = 'era';
+                    container.appendChild(eraDiv);
+                });
 
-                        const header = document.createElement('div');
-                        header.className = 'era-header';
-                        const label = document.createElement('span');
-                        label.className = 'era-label';
-                        label.textContent = eraName;
-                        header.appendChild(label);
-
-                        eraDiv.appendChild(header);
-
-                        eraMap.get(eraName).forEach(ev => {
-                            const evEl = createEventEl(ev);
-                            eraDiv.appendChild(evEl);
-                        });
-
-                        container.appendChild(eraDiv);
+                // intersection observer for reveal animation
+                const events = container.querySelectorAll('.event');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
                     });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-                    // intersection observer for reveal animation
-                    const events = container.querySelectorAll('.event');
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) entry.target.classList.add('visible');
-                        });
-                    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+                events.forEach(e => observer.observe(e));
+            }
 
-                    events.forEach(e => observer.observe(e));
-                })();
+            // initialization: wire language selector and render default
+            document.addEventListener('DOMContentLoaded', () => {
+                const sel = document.getElementById('langSelect');
+                // initial render in Chinese dataset
+                mountTimeline(timelineData['zh']);
+
+                sel.addEventListener('change', (e) => {
+                    const v = e.target.value;
+                    mountTimeline(timelineData[v]);
+                });
+            });
         </script>
 
 </body>
