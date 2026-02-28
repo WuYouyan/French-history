@@ -146,6 +146,48 @@
             animation: pulse-line 2s ease-in-out infinite;
         }
 
+        /* Small sticky header shown when hero is scrolled away */
+        .site-header {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 1rem;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transform: translateY(-120%);
+            transition: transform 240ms ease;
+            z-index: 9999;
+        }
+
+        .site-header.visible {
+            transform: translateY(0);
+        }
+
+        .site-header .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blanc);
+        }
+
+        .site-header .lang-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 640px) {
+            .site-header { height: 48px; padding: 0 0.8rem; }
+            .site-header .title { font-size: 0.95rem; }
+        }
+
         /* TIMELINE */
         .timeline-container {
             max-width: 1000px;
@@ -448,6 +490,18 @@
 </head>
 
 <body>
+
+    <!-- Small sticky header (hidden until hero is out of view) -->
+    <div id="siteHeader" class="site-header" aria-hidden="true">
+        <div class="title">法国历史</div>
+        <div class="lang-wrap">
+            <label for="langSelectTop" style="font-size:0.78rem; color:var(--muted);">语言</label>
+            <select id="langSelectTop" style="background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.06); padding:0.25rem 0.5rem; border-radius:6px;">
+                <option value="zh">中文</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -1141,16 +1195,50 @@
                 events.forEach(e => observer.observe(e));
             }
 
-            // initialization: wire language selector and render default
+            // initialization: wire language selectors, render default and show small header when hero is out of view
             document.addEventListener('DOMContentLoaded', () => {
                 const sel = document.getElementById('langSelect');
-                // initial render in Chinese dataset
-                mountTimeline(timelineData['zh']);
+                const topSel = document.getElementById('langSelectTop');
+                const header = document.getElementById('siteHeader');
 
-                sel.addEventListener('change', (e) => {
-                    const v = e.target.value;
-                    mountTimeline(timelineData[v]);
-                });
+                // initial render in selected language (default zh)
+                const initial = (sel && sel.value) ? sel.value : 'zh';
+                if (topSel) topSel.value = initial;
+                mountTimeline(timelineData[initial]);
+
+                // sync changes both ways
+                if (sel) {
+                    sel.addEventListener('change', (e) => {
+                        const v = e.target.value;
+                        if (topSel) topSel.value = v;
+                        mountTimeline(timelineData[v]);
+                    });
+                }
+
+                if (topSel) {
+                    topSel.addEventListener('change', (e) => {
+                        const v = e.target.value;
+                        if (sel) sel.value = v;
+                        mountTimeline(timelineData[v]);
+                    });
+                }
+
+                // show the small header when the hero is not visible
+                const hero = document.querySelector('.hero');
+                if (hero && header) {
+                    const io = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                header.classList.remove('visible');
+                                header.setAttribute('aria-hidden', 'true');
+                            } else {
+                                header.classList.add('visible');
+                                header.setAttribute('aria-hidden', 'false');
+                            }
+                        });
+                    }, { threshold: 0.05 });
+                    io.observe(hero);
+                }
             });
         </script>
 
