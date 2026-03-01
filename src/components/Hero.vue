@@ -3,22 +3,29 @@
     <div class="tricolor-bar">
       <span></span><span></span><span></span>
     </div>
-    <p class="hero-label">Livret du Citoyen · 公民手册</p>
-    <h1>法国历史<br><em>大事年表</em></h1>
-    <p class="hero-sub">从史前时代到当代欧洲 · De la préhistoire à l'Europe contemporaine</p>
+    <p class="hero-label">{{ $t('hero.label') }}</p>
+    <h1>
+      {{ $t('hero.title') }}<br />
+      <em>{{ $t('hero.subtitle') }}</em>
+    </h1>
+    <p class="hero-sub">
+      {{ $t('hero.subline') }}
+    </p>
     <div class="hero-lang">
-      <label for="langSelect" class="hero-lang-label">语言 / Langue</label>
+      <label for="langSelect" class="hero-lang-label">
+        {{ $t('hero.langLabel') }}
+      </label>
       <select
         id="langSelect"
         v-model="currentLang"
-        aria-label="选择语言 / Choisir la langue"
+        :aria-label="$t('hero.langAria')"
         class="hero-lang-select"
       >
         <option value="zh">中文</option>
         <option value="fr">Français</option>
       </select>
     </div>
-    <div class="scroll-hint">向下滚动</div>
+    <div class="scroll-hint">{{ $t('hero.scrollHint') }}</div>
   </section>
 </template>
 
@@ -40,6 +47,7 @@ const currentLang = computed({
 <style scoped>
 .hero {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +58,7 @@ const currentLang = computed({
     radial-gradient(ellipse at 20% 50%, rgba(0, 35, 149, 0.35) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 50%, rgba(237, 41, 57, 0.25) 0%, transparent 60%),
     var(--dark);
-  padding: 2rem;
+  padding: 2rem 2rem 5rem;
   overflow: hidden;
 }
 
@@ -149,8 +157,6 @@ const currentLang = computed({
 .scroll-hint {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
   opacity: 0;
   animation: fadeUp 0.8s 1.2s ease forwards;
   display: flex;
@@ -169,6 +175,8 @@ const currentLang = computed({
   height: 40px;
   background: linear-gradient(to bottom, var(--gold), transparent);
   animation: pulse-line 2s ease-in-out infinite;
+  display: block;
+  margin: 0.5rem auto 0;
 }
 
 @keyframes fadeUp {
@@ -182,16 +190,18 @@ const currentLang = computed({
   }
 }
 
-.scroll-hint::after {
-  transform: none;
-}
-
 @keyframes pulse-line {
   0%, 100% {
     opacity: 0.4;
   }
   50% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 6rem;
   }
 }
 </style>

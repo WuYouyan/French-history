@@ -4,10 +4,14 @@
     :class="['site-header', { visible: visible }]"
     :aria-hidden="!visible"
   >
-    <div class="title">法国历史</div>
+    <div class="title">{{ $t('site.title') }}</div>
     <div class="lang-wrap">
-      <label for="langSelectTop" class="lang-label">语言</label>
-      <select id="langSelectTop" v-model="currentLang" aria-label="选择语言">
+      <label for="langSelectTop" class="lang-label">{{ $t('site.langLabel') }}</label>
+      <select
+        id="langSelectTop"
+        v-model="currentLang"
+        :aria-label="$t('site.langAria')"
+      >
         <option value="zh">中文</option>
         <option value="fr">Français</option>
       </select>

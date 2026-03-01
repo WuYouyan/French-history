@@ -1,8 +1,8 @@
 <template>
   <footer class="timeline-footer">
     <div class="footer-flag">🇫🇷</div>
-    <p class="footer-text">Liberté · Égalité · Fraternité</p>
-    <p class="footer-credit">根据法国内政部《公民手册》(Livret du Citoyen, Février 2022) 整理</p>
+    <p class="footer-text">{{ $t('footer.motto') }}</p>
+    <p class="footer-credit">{{ $t('footer.credit') }}</p>
   </footer>
 </template>
 

@@ -12,14 +12,22 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { timelineData } from './data.js'
 import SiteHeader from './components/SiteHeader.vue'
 import Hero from './components/Hero.vue'
 import Timeline from './components/Timeline.vue'
 import Footer from './components/Footer.vue'
 
-const lang = ref('zh')
+const { locale } = useI18n()
+
+const lang = computed({
+  get: () => locale.value,
+  set: (v) => {
+    locale.value = v
+  }
+})
 const heroVisible = ref(true)
 let observer = null
 

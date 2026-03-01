@@ -21,8 +21,9 @@ const props = defineProps({
 
 <style scoped>
 .timeline-container {
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding: 5rem 2rem 8rem;
   position: relative;
 }
@@ -42,11 +43,5 @@ const props = defineProps({
     transparent 100%
   );
   transform: translateX(-50%);
-}
-
-@media (max-width: 640px) {
-  .timeline-container::before {
-    left: 20px;
-  }
 }
 </style>
