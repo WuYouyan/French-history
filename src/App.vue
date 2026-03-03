@@ -14,7 +14,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { timelineData } from './data.js'
+import timelineData from './data'
 import SiteHeader from './components/SiteHeader.vue'
 import Hero from './components/Hero.vue'
 import Timeline from './components/Timeline.vue'
