@@ -1,5 +1,5 @@
-import fr from './fr.json'
-import zh from './zh.json'
+import fr from './locales/fr.json'
+import zh from './locales/zh.json'
 
 const timelineData = {
   fr,
