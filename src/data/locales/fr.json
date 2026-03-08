@@ -74,10 +74,10 @@
     {
         "type": "event",
         "era": "Époque moderne",
-        "orientation": "left",
+        "orientation": "right",
         "year": "XVIIe siècle (1622–1673)",
         "title": "Molière",
-        "description": "L'un des dramaturges français les plus célèbres, auteur de comédies telles que Le Misanthrope, figure majeure de la littérature classique.",
+        "description": "Le dramaturge français le plus célèbre, né Jean-Baptiste Poquelin, qui vécut à l’époque de Louis XIV et créa des comédies célèbres comme L’Avare, a profondément influencé la littérature française.",
         "tag": {
             "type": "culture",
             "label": "Littérature & arts"
@@ -86,7 +86,7 @@
     {
         "type": "event",
         "era": "Époque moderne",
-        "orientation": "right",
+        "orientation": "left",
         "year": "XVIIIe siècle",
         "title": "Philosophes des Lumières",
         "description": "Rousseau, Voltaire, Diderot et autres défendent la raison, la tolérance et la liberté, préparant intellectuellement la Révolution française.",
@@ -98,7 +98,7 @@
     {
         "type": "event",
         "era": "Révolution Française",
-        "orientation": "left",
+        "orientation": "right",
         "year": "14 juillet 1789",
         "title": "Prise de la Bastille",
         "description": "La prise de la Bastille par le peuple parisien marque le déclenchement de la Révolution ; cette date deviendra la fête nationale.",
@@ -110,8 +110,8 @@
     {
         "type": "event",
         "era": "Révolution Française",
-        "orientation": "left",
-        "year": "1789",
+        "orientation": "right",
+        "year": "26 août 1789",
         "title": "Déclaration des droits de l'homme et du citoyen",
         "description": "Énonce les principes de liberté et d'égalité qui fondent la république et inspirent la législation française jusqu'à aujourd'hui.",
         "tag": {
@@ -173,7 +173,7 @@
         "orientation": "right",
         "year": "1875",
         "title": "Naissance de la Troisième République",
-        "description": "La Troisième République consolide durablement le régime républicain ; Jules Ferry lancera la laïcisation et l'école publique.",
+        "description": "Les lois constitutionnelles de 1875 stabilisent durablement le régime républicain et marquent la naissance de la Troisième République.",
         "tag": {
             "type": "republic",
             "label": "République"
@@ -183,6 +183,18 @@
         "type": "event",
         "era": "Empire & XIXe siècle",
         "orientation": "left",
+        "year": "1882",
+        "title": "Lois scolaires de Jules Ferry (1882)",
+        "description": "Les lois scolaires de Jules Ferry rendent l'école primaire gratuite, obligatoire et laïque pour les enfants, ouvrant l'instruction à tous.",
+        "tag": {
+            "type": "republic",
+            "label": "République"
+        }
+    },
+    {
+        "type": "event",
+        "era": "Empire & XIXe siècle",
+        "orientation": "right",
         "year": "XIXe siècle (1802–1885)",
         "title": "Victor Hugo",
         "description": "Écrivain majeur engagé contre les inégalités et la peine de mort, auteur de Notre-Dame de Paris et Les Misérables.",
@@ -194,7 +206,7 @@
     {
         "type": "event",
         "era": "Empire & XIXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1889",
         "title": "Inauguration de la Tour Eiffel",
         "description": "Construite pour l'Exposition universelle de 1889 par Gustave Eiffel, elle deviendra l'emblème de la France.",
@@ -206,7 +218,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1905",
         "title": "Loi de séparation des Églises et de l'État",
         "description": "Affirme la laïcité en séparant les institutions religieuses et l'État, pierre angulaire de la République laïque.",
@@ -218,7 +230,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1914–1918",
         "title": "Première Guerre mondiale",
         "description": "Conflit mondial qui cause des pertes humaines immenses et redessine l'ordre européen.",
@@ -230,7 +242,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1939–1945",
         "title": "Seconde Guerre mondiale",
         "description": "Occupation nazie, collaboration du régime de Vichy, puis libération (dont le débarquement en Normandie en 1944).",
@@ -242,7 +254,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1945",
         "title": "Création de la sécurité sociale",
         "description": "Mise en place d'un système de protection sociale après la guerre, fondé sur la solidarité nationale.",
@@ -254,7 +266,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1957",
         "title": "Traité de Rome",
         "description": "Signature du traité instituant la Communauté économique européenne, première étape importante vers l'intégration européenne.",
@@ -266,7 +278,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1958",
         "title": "Naissance de la Ve République · Le général de Gaulle",
         "description": "Sous l'impulsion du général de Gaulle, la Ve République est créée en 1958 avec une nouvelle constitution renforçant le pouvoir exécutif.",
@@ -278,7 +290,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1945/1946–1962",
         "title": "Décolonisation française",
         "description": "Processus par lequel les colonies d'Asie et d'Afrique accèdent à l'indépendance, marqué par des conflits comme en Indochine et en Algérie.",
@@ -290,7 +302,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "mai 1968",
         "title": "Mai 1968",
         "description": "Mouvement social initié par les étudiants et rejoint par les travailleurs, transformant profondément la société française.",
@@ -302,7 +314,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1974",
         "title": "Majorité à 18 ans",
         "description": "Abaissement de la majorité civile à 18 ans, donnant aux jeunes l'accès plein et entier aux droits civiques.",
@@ -314,7 +326,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1975",
         "title": "Loi Veil (légalisation de l'avortement)",
         "description": "La loi portée par Simone Veil légalise l'avortement en France, un moment déterminant pour les droits des femmes.",
@@ -326,7 +338,7 @@
     {
         "type": "event",
         "era": "XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1981",
         "title": "Abolition de la peine de mort",
         "description": "La France abolit la peine capitale, affirmant un engagement fort en faveur des droits de l'homme.",
@@ -338,7 +350,7 @@
     {
         "type": "event",
         "era": "Europe contemporaine",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1992",
         "title": "Création de l'Union européenne · Les citoyens français deviennent citoyens européens",
         "description": "La construction européenne se renforce et les citoyens obtiennent des droits nouveaux à l'échelle communautaire.",
@@ -350,7 +362,7 @@
     {
         "type": "event",
         "era": "Europe contemporaine",
-        "orientation": "left",
+        "orientation": "right",
         "year": "2002",
         "title": "Adoption de l'euro",
         "description": "Entrée en vigueur de l'euro comme monnaie unique pour plusieurs pays européens, approfondissant l'union économique.",

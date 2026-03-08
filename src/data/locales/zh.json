@@ -74,10 +74,10 @@
     {
         "type": "event",
         "era": "近代 · Époque Moderne",
-        "orientation": "left",
+        "orientation": "right",
         "year": "17世纪（1622—1673年）",
         "title": "莫里哀 · Molière",
-        "description": "法国最著名的戏剧作家，生活在路易十四时代，创作了《吝啬鬼》等著名喜剧，对法国文学影响深远。",
+        "description": "法国最著名的戏剧作家，原名让-巴蒂斯特·波克兰，生活在路易十四时代，创作了《吝啬鬼》等著名喜剧，对法国文学影响深远。",
         "tag": {
             "type": "culture",
             "label": "文学艺术"
@@ -86,7 +86,7 @@
     {
         "type": "event",
         "era": "近代 · Époque Moderne",
-        "orientation": "right",
+        "orientation": "left",
         "year": "18世纪",
         "title": "启蒙思想家 · Philosophes des Lumières",
         "description": "卢梭、伏尔泰、狄德罗等哲学家通过著作为宽容与思想自由而战，为法国大革命奠定了思想基础。",
@@ -98,7 +98,7 @@
     {
         "type": "event",
         "era": "法国大革命 · Révolution Française",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1789年7月14日",
         "title": "攻克巴士底狱 · Prise de la Bastille",
         "description": "巴黎人民攻占王室监狱巴士底狱，标志着大革命的开始。这一天后来成为法国国庆日（7月14日）。同时期诞生了《马赛曲》国歌与三色旗。",
@@ -110,8 +110,8 @@
     {
         "type": "event",
         "era": "法国大革命 · Révolution Française",
-        "orientation": "left",
-        "year": "1789年",
+        "orientation": "right",
+        "year": "1789年8月26日",
         "title": "《人权与公民权宣言》 · Déclaration des droits de l'homme et du citoyen",
         "description": "确立了所有公民的自由与平等原则。这是共和国价值观的根本来源，至今仍是法国法律体系的基石。",
         "tag": {
@@ -173,7 +173,7 @@
         "orientation": "right",
         "year": "1875年",
         "title": "第三共和国诞生 · Naissance de la Troisième République",
-        "description": "共和政体正式稳定建立。Jules Ferry于1880年代推动公共教育改革，使小学教育成为免费、义务且世俗化的教育。",
+        "description": "1875年通过的宪法性法律确立并稳定了共和政体，标志着第三共和国的诞生。",
         "tag": {
             "type": "republic",
             "label": "共和国"
@@ -183,6 +183,18 @@
         "type": "event",
         "era": "帝国与19世纪 · Empire & XIXe siècle",
         "orientation": "left",
+        "year": "1882年",
+        "title": "Jules Ferry 公共教育改革 · Lois scolaires de Jules Ferry",
+        "description": "Jules Ferry 于 1882 年推动公共教育改革，使小学教育成为免费、义务且世俗化的教育，学校逐渐向所有儿童开放。",
+        "tag": {
+            "type": "republic",
+            "label": "共和国"
+        }
+    },
+    {
+        "type": "event",
+        "era": "帝国与19世纪 · Empire & XIXe siècle",
+        "orientation": "right",
         "year": "19世纪（1802—1885年）",
         "title": "维克多·雨果 · Victor Hugo",
         "description": "法国最伟大的作家之一，积极反对社会不平等与死刑。代表作有《悲惨世界》与《巴黎圣母院》。",
@@ -194,7 +206,7 @@
     {
         "type": "event",
         "era": "帝国与19世纪 · Empire & XIXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1889年",
         "title": "埃菲尔铁塔建成 · Inauguration de la Tour Eiffel",
         "description": "由工程师居斯塔夫·埃菲尔为1889年世界博览会而建，每年吸引逾700万游客，是法国最著名的标志性建筑。",
@@ -206,7 +218,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1905年",
         "title": "政教分离法 · Loi de séparation des Églises et de l'État",
         "description": "确立了教会与国家彻底分离的原则（laïcité），是共和国世俗化的重要里程碑，至今仍是法国社会的核心价值之一。",
@@ -218,7 +230,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1914—1918年",
         "title": "第一次世界大战 · Première Guerre mondiale",
         "description": "席卷整个欧洲乃至美国的大规模战争，造成超过900万人死亡。11月11日为法定假日，纪念一战结束。",
@@ -230,7 +242,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1939—1945年",
         "title": "第二次世界大战 · Seconde Guerre mondiale",
         "description": "纳粹德国入侵法国，维希政权与纳粹合作，参与了对犹太人的驱逐。1944年6月6日，盟军在诺曼底登陆，是解放法国的决定性时刻。5月8日为法定假日，纪念二战结束。",
@@ -242,7 +254,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1945年",
         "title": "社会保障体系建立 · Création de la sécurité sociale",
         "description": "战后创建社会保障制度，由雇主、雇员及自营职业者缴纳的社会保险费和税款共同资助，体现了共和国\"博爱\"（fraternité）的价值观。",
@@ -254,7 +266,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1957年",
         "title": "《罗马条约》 · Traité de Rome",
         "description": "法国与其他五个欧洲国家共同签署《罗马条约》，建立欧洲经济共同体，目标是在欧洲各国人民之间建立紧密联盟。欧洲一体化进程为欧洲带来了持久和平。",
@@ -266,7 +278,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1958年",
         "title": "第五共和国成立 · 戴高乐将军 · Naissance de la Ve République · Le général de Gaulle",
         "description": "戴高乐将军领导法国抵抗德军占领并参与解放法国。1958年，他主导建立了法国现行政治体制——第五共和国，颁布了现行宪法。",
@@ -278,7 +290,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1945/1946—1962年",
         "title": "法国非殖民化 · Décolonisation française",
         "description": "欧洲殖民帝国中的各民族争取独立，法国的去殖民化进程从亚洲开始，延伸至非洲，经历了印度支那战争和阿尔及利亚战争等冲突。",
@@ -290,7 +302,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1968年5月",
         "title": "五月风暴 · Mai 1968",
         "description": "由学生发起的社会运动，迅速蔓延至工人阶层，成为20世纪最重要的罢工与示威浪潮之一，深刻影响了法国社会。",
@@ -302,7 +314,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1974年",
         "title": "法定成年年龄降至18岁 · Majorité à 18 ans",
         "description": "法国将法定成年年龄从21岁降至18岁，赋予年轻公民投票权及完整公民权利。",
@@ -314,7 +326,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1975年",
         "title": "韦伊法案（人工流产合法化） · Loi Veil (légalisation de l'avortement)",
         "description": "由西蒙娜·韦伊主导推动的《自愿人工流产法》正式颁布，标志着女性对自身身体自主权的重要立法保障。",
@@ -326,7 +338,7 @@
     {
         "type": "event",
         "era": "20世纪 · XXe siècle",
-        "orientation": "left",
+        "orientation": "right",
         "year": "1981年",
         "title": "废除死刑 · Abolition de la peine de mort",
         "description": "法国正式废除死刑，成为西方民主国家中推进人权保障的重要里程碑，体现了对生命尊严的根本尊重。",
@@ -338,7 +350,7 @@
     {
         "type": "event",
         "era": "当代欧洲 · Europe Contemporaine",
-        "orientation": "right",
+        "orientation": "left",
         "year": "1992年",
         "title": "欧盟成立 · 法国公民成为欧洲公民 · Création de l'Union européenne · Les citoyens français deviennent citoyens européens",
         "description": "欧洲联盟正式成立，将成员国更紧密地联系在一起。自此，法国公民同时也是欧洲公民，可在欧盟内自由流动、工作、学习和定居。",
@@ -350,7 +362,7 @@
     {
         "type": "event",
         "era": "当代欧洲 · Europe Contemporaine",
-        "orientation": "left",
+        "orientation": "right",
         "year": "2002年",
         "title": "欧元启用 · Adoption de l'euro",
         "description": "自2002年起，法国与其他18个欧盟成员国共同采用欧元作为统一货币，进一步深化了欧洲经济一体化进程。",
