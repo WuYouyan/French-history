@@ -12,9 +12,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from './services/translationService'
+import { historyPreferenceService, persistPreferences } from './services/historyPreferenceService'
 import timelineData from './data'
 import SiteHeader from './components/SiteHeader.vue'
 import Hero from './components/Hero.vue'
@@ -22,6 +23,12 @@ import Timeline from './components/Timeline.vue'
 import Footer from './components/Footer.vue'
 
 const { locale } = useI18n()
+
+watch(
+  () => ({ ...historyPreferenceService.state }),
+  () => persistPreferences(),
+  { deep: true }
+)
 
 const lang = computed({
   get: () => locale.value,

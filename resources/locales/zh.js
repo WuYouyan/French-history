@@ -16,5 +16,10 @@ export default {
     footer: {
         motto: '自由 · 平等 · 博爱',
         credit: '根据法国内政部《公民手册》(Livret du Citoyen, Février 2022) 整理'
+    },
+    revision: {
+        label: '背诵模式',
+        hideTime: '隐藏时间',
+        blurCard: '模糊事件内容',
     }
 }

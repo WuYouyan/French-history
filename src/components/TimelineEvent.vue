@@ -4,8 +4,20 @@
     ref="eventRef"
   >
     <div v-if="event.orientation === 'left'" class="event-content">
-      <div class="event-year">{{ event.year }}</div>
-      <div class="event-card">
+      <div
+        class="event-year"
+        :class="{ 'revision-blurred': shouldHideTime && !yearRevealed }"
+        @click="onYearClick"
+      >
+        {{ event.year }}
+      </div>
+      <div
+        class="event-card"
+        :class="{
+          'revision-blurred': shouldBlurEventCard && !cardRevealed
+        }"
+        @click="onCardClick"
+      >
         <div class="event-title">{{ event.title }}</div>
         <div class="event-desc">{{ event.description }}</div>
         <span
@@ -18,8 +30,20 @@
     </div>
     <div class="event-dot"><div class="dot-inner"></div></div>
     <div v-if="event.orientation === 'right'" class="event-content">
-      <div class="event-year">{{ event.year }}</div>
-      <div class="event-card">
+      <div
+        class="event-year"
+        :class="{ 'revision-blurred': shouldHideTime && !yearRevealed }"
+        @click="onYearClick"
+      >
+        {{ event.year }}
+      </div>
+      <div
+        class="event-card"
+        :class="{
+          'revision-blurred': shouldBlurEventCard && !cardRevealed
+        }"
+        @click="onCardClick"
+      >
         <div class="event-title">{{ event.title }}</div>
         <div class="event-desc">{{ event.description }}</div>
         <span
@@ -34,7 +58,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { historyPreferenceService } from '../services/historyPreferenceService'
+
+const prefs = historyPreferenceService.state
+const shouldHideTime = computed(
+  () => prefs.revisionActive && prefs.revisionHideTime
+)
+const shouldBlurEventCard = computed(
+  () => prefs.revisionActive && prefs.revisionBlurEventCard
+)
+const yearRevealed = ref(false)
+const cardRevealed = ref(false)
+
+function onYearClick() {
+  if (shouldHideTime.value) yearRevealed.value = !yearRevealed.value
+}
+
+function onCardClick() {
+  if (shouldBlurEventCard.value) cardRevealed.value = !cardRevealed.value
+}
 
 const TAG_CLASS_MAP = {
   revolution: 'tag-revolution',
@@ -150,8 +193,41 @@ onUnmounted(() => {
   letter-spacing: 0.25em;
   color: var(--gold);
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
+  transition: filter 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  display: inline-block;
+  min-height: 1.4em;
+}
+
+.event-year.revision-blurred {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 遮罩紧贴内容宽度，金色光芒从缝隙透出的宝箱效果 */
+.event-year.revision-blurred::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 6px;
+  background: var(--dark);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  pointer-events: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 0 12px rgba(201, 168, 76, 0.22),
+    0 0 24px rgba(201, 168, 76, 0.1),
+    inset 0 0 16px rgba(201, 168, 76, 0.06);
+}
+
+.event-year.revision-blurred:hover::after {
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow:
+    0 0 18px rgba(201, 168, 76, 0.35),
+    0 0 36px rgba(201, 168, 76, 0.15),
+    inset 0 0 20px rgba(201, 168, 76, 0.1);
 }
 
 .event-card {
@@ -159,8 +235,32 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 1.1rem 1.3rem;
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease,
+    filter 0.4s ease, box-shadow 0.4s ease;
   cursor: default;
+}
+
+.event-card.revision-blurred {
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  position: relative;
+}
+
+.event-card.revision-blurred::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: var(--dark);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.event-card.revision-blurred:hover::after {
+  border-color: rgba(201, 168, 76, 0.25);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.15);
 }
 
 .event:hover .event-card {

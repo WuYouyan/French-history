@@ -16,5 +16,10 @@ export default {
     footer: {
         motto: 'Liberté · Égalité · Fraternité',
         credit: "D'après le « Livret du Citoyen » du ministère de l’Intérieur (février 2022)"
+    },
+    revision: {
+        label: 'Mode révision',
+        hideTime: 'Masquer les dates',
+        blurCard: 'Flouter le contenu',
     }
 }
