@@ -1,7 +1,7 @@
 <template>
   <header
     id="siteHeader"
-    :class="['site-header', { visible: visible }]"
+    :class="['site-header', { visible }]"
     :aria-hidden="!visible"
   >
     <div class="title">{{ $t('site.title') }}</div>
@@ -22,9 +22,19 @@
             </span>
             <span class="revision-label">{{ $t('revision.label') }}</span>
           </button>
+          <button
+            v-if="prefs.revisionActive"
+            type="button"
+            class="revision-fold-btn"
+            :aria-expanded="optionsExpanded"
+            aria-label="展开/收起选项"
+            @click="optionsExpanded = !optionsExpanded"
+          >
+            <span class="revision-fold-icon" :class="{ expanded: optionsExpanded }">▼</span>
+          </button>
         </div>
         <Transition name="revision-options">
-          <div v-if="prefs.revisionActive" class="revision-options">
+          <div v-if="prefs.revisionActive && optionsExpanded" class="revision-options">
             <label class="revision-option">
               <input
                 type="checkbox"
@@ -60,8 +70,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { historyPreferenceService } from '../services/historyPreferenceService'
+
+const optionsExpanded = ref(true)
 
 const props = defineProps({
   visible: { type: Boolean, default: false },
@@ -125,6 +137,37 @@ const prefs = historyPreferenceService.state
 .revision-toggle {
   display: flex;
   align-items: center;
+  gap: 0.25rem;
+}
+
+.revision-fold-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.revision-fold-btn:hover {
+  color: var(--blanc);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.revision-fold-icon {
+  font-size: 0.6rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.revision-fold-icon.expanded {
+  transform: rotate(180deg);
 }
 
 .revision-switch {
@@ -256,6 +299,23 @@ const prefs = historyPreferenceService.state
   }
   .site-header .title {
     font-size: 0.95rem;
+  }
+  .revision-wrap {
+    position: relative;
+  }
+  .revision-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(10, 10, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
 </style>
